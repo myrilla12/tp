@@ -80,7 +80,7 @@ Shows you a help window with useful resources which includes:
 
 Format: `help`
 
-![helpwindow.png](images%2Fhelpwindow.png)
+![helpWindow.png](images%2FhelpWindow.png)
 
 
 ### Adding a person: `add`
@@ -161,6 +161,27 @@ Examples:
 * `find olive 87438` returns `87438807`, `Charlotte Oliveiro`<br>
   ![result for 'find olive 87438'](images/findOlive.png)
 
+### Filtering persons by age group or appointment dates: `filter`
+
+Filter persons whose age and/or appointment dates are within the specified range.
+
+Format: `filter [ap/APPOINTMENT_DATE_LOWER_BOUND - APPOINTMENT_DATE_UPPER_BOUND] [b/AGE_LOWER_BOUND - AGE_UPPER_BOUND]`
+
+* The order of the keywords does not matter. 
+* Only appointment dates and/or age group can be used to filter.
+* Dates must be in `dd-MM-yyyy` format.
+* Each value for each field has to be a range (i.e. lower bound - upper bound)
+* At least one field (age or appointment dates) has to be specified.
+* Range are inclusive (i.e. age 79 is considered True in specified range'79-99')
+* Persons must within all specified ranges to be returned if both age and appointment dates are specified (i.e. `AND` search).
+  e.g. `filter b/70-99 ap/01/01/2025 - 01/01/2026` will return `Roy b/87 ap/11/11/2025`.
+
+Examples:
+* `filter b/70-79`
+* `filter ap/01/01/2025 - 01/01/2026`
+* `filter b/70-79 ap/01/01/2025 - 01/01/2026`
+
+
 ### Editing a person's notes : `note`
 
 Edits an existing person's note in the address book, which contains `PREVIOUS APPOINTMENTS`, `MEDICATIONS`, `REMARKS`.
@@ -197,6 +218,15 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+
+**Confirmation Requirement:**
+
+A confirmation window will appear before deleting a person, asking you to confirm the deletion. 
+You must select “OK” to proceed with the deletion. If you select “Cancel,” the action will be aborted, 
+and the person will not be deleted.
+
+![deleteConfirmation.png](images%2FdeleteConfirmation.png)
+
 ### Sorting list based on Appointment Dates : `sort`
 
 Sorts the persons in the address book on the basis of their appointment dates.
@@ -204,6 +234,7 @@ Sorts the persons in the address book on the basis of their appointment dates.
 Format: `sort`
 
 * No other parameters should be supplied.
+
 
 ### Starring a person : `star`
 
@@ -239,11 +270,22 @@ Examples:
 * `list` followed by `unstar 2` unstars the 2nd person in the address book.
 * `find Betsy` followed by `unstar 1` unstars the 1st person in the results of the `find` command.
 
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
+
+
+**Confirmation Requirement:**
+
+A confirmation window will appear before clearing all contacts in MediContact, 
+asking you to confirm if you are sure you want to proceed. 
+You must select “OK” to clear the address book. If you select “Cancel,” 
+the action will be aborted, and the address book will remain unchanged.
+
+![clearConfirmation.png](images%2FclearConfirmation.png)
 
 ### Exporting the contacts : `export`
 
@@ -252,6 +294,7 @@ Exports contact info in file path `data/addressbook.json`.
 Format: `export`
 
 - Locate file `addressbook.json` under the folder `data` that will be added to the current folder of `addressbook.jar` upon executing `export`.
+
 
 ### Exiting the program : `exit`
 
