@@ -71,7 +71,10 @@ Medicontact is a **desktop app for managing contacts, optimized for use via a  L
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * Command keywords are case insensitive
-  e.g. if the command `add n/John Doe`, is equal to `Add n/John Doe`.
+  e.g. the command `add n/John Doe`, is equal to `Add n/John Doe`.
+
+* Parameter `NAME` is case insensitive
+  e.g. the command `delete John Doe`, is equal to `delete john doe` or `delete JOHn DoE`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
@@ -93,8 +96,13 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/AGE s/SEX [ap/APPOINTMENT
 
 <box type="tip" seamless>
 
-**Remarks**: A person can have any number of tags (including 0). Duplicate tags will be ignored (e.g. if added contact includes paramters `t/patient t/patient` the contact will only include 1 `patient` tag). 
-</box>
+**Remarks**: 
+
+- Duplicate names are not permitted. Addressbook cannot contain two `John Doe` or a `Betsy Crowe` and a `betsy crowe`
+
+- A person can have any number of tags (including 0). Duplicate tags will be ignored (e.g. if added contact includes paramters `t/patient t/patient` the contact will only include 1 `patient` tag). 
+
+  </box>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/40 s/Male`
@@ -108,16 +116,22 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+> [!WARNING]
+> After confirmation, any cleared data or contact cannot be retrieved. This action is IRREVERSIBLE.
+
+* Recommended practice: Always have a copy of current data. You may refer to [Exporting the data](#exporting the data). You can use [import feature](#importing-contacts-import) if you have lost your data after clearing it unintentionally.
+* You can directly delete the addressbook.json file which can be found in data folder or in the data directory if you want to recover the sample data.
 
 **Confirmation Requirement:**
 
-A confirmation window will appear before clearing all contacts in MediContact, 
+* A confirmation window will appear before clearing all contacts in MediContact, 
 asking you to confirm if you are sure you want to proceed. 
 You must select “OK” to clear the address book. If you select “Cancel,” 
 the action will be aborted, and the address book will remain unchanged.
+* Keyboard commands such as “Enter,” “Return,” and “Space” act as shortcuts to select the OK button, while “Esc” triggers the cancel button.
 
-![clearConfirmation.png](images%2FclearConfirmation.png)
 
+<img src="images/clearConfirmation.png" width="450">
 
 
 ### Deleting a person : `delete`
@@ -125,6 +139,9 @@ the action will be aborted, and the address book will remain unchanged.
 Deletes the specified person from the address book.
 
 Format: `delete INDEX` / `delete NAME`
+
+> [!WARNING]
+> After confirmation, any deleted data or contact cannot be retrieved. This action is IRREVERSIBLE.
 
 * Deletes the person at the specified `INDEX` or with the specified `NAME`.
 * The name refers to the full name as shown in the displayed person list.
@@ -141,11 +158,12 @@ Examples:
 
 **Confirmation Requirement:**
 
-A confirmation window will appear before deleting a person, asking you to confirm the deletion. 
+* A confirmation window will appear before deleting a person, asking you to confirm the deletion. 
 You must select “OK” to proceed with the deletion. If you select “Cancel,” the action will be aborted, 
 and the person will not be deleted.
+* Keyboard commands such as “Enter,” “Return,” and “Space” act as shortcuts to select the OK button, while “Esc” triggers the cancel button.
 
-![deleteConfirmation.png](images%2FdeleteConfirmation.png)
+<img src="images/deleteConfirmation.png" width="450">
 
 
 
@@ -163,6 +181,7 @@ Format: `edit NAME [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/AGE] [s/SEX] [ap/
     specifying any tags after it.
 * You can remove all the person’s appointments by typing `ap/` without
   specifying any appointments after it.
+* Currently, editing of specific tags and appointments are not possible. To work around this, you can clear their respective fields and add the new tags/appointments.
 
 Examples:
 *  `edit John Doe p/91234567 e/johndoe@example.com` Edits the phone number and email address of John Doe to be `91234567` and `johndoe@example.com` respectively.
@@ -236,7 +255,7 @@ Shows you a help window with useful resources which includes:
 
 Format: `help`
 
-![helpWindow.png](images%2FhelpWindow.png)
+<img src="images/helpWindow.png" width="800">
 
 
 
@@ -250,7 +269,7 @@ Format: `import FILENAME.json`
 - File **must** be a `json` file. Ensure that the extension `.json` follows the `FILENAME` 
 - File **must** be in the same folder as the application JAR file. 
 - File **must** be in the expected format of MediContact data (see [Expected format](#expected format) for more details). 
-- Patient information in the file **must** follow constraints of MediContact. E.g. name must contain only alphanumeric characters, phone number must be exactly 8 digits long (see [Summary of parameter constraints](#summary of parameter constraints) for more details).
+- Patient information in the file **must** follow constraints of MediContact. E.g. name must contain only alphanumeric characters, phone number must be exactly 8 digits long (see [Summary of parameter constraints](#summary of parameter constraints) for more details). No duplicate names are allowed in the addressbook (e.g. `John Doe` and `JOhN DoE` cannot be in the same addressbook).
 
 <box type="warning" seamless>
 
@@ -349,10 +368,11 @@ The following is an example of a valid JSON file content.
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows an alphabetically sorted list of all persons in the address book.
 
 Format: `list`
 
+* No other parameters should be supplied.
 * You will be informed when the list is empty: `The list is currently empty.` or when it is not empty: `Listed all persons`.
 
 

@@ -2,10 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.logic.commands.controller.ConfirmationController;
-import seedu.address.logic.commands.controller.ConfirmationWindowController;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.ui.controller.ConfirmationController;
+import seedu.address.ui.controller.ConfirmationWindowController;
 
 /**
  * Clears the address book.
@@ -49,6 +49,6 @@ public class ClearCommand extends Command {
      * @return true if the user confirms clear, false otherwise.
      */
     private boolean isDeletionConfirmed() {
-        return confirmationController.isConfirmed("Confirm Delete", String.format(MESSAGE_CONFIRMATION));
+        return confirmationController.isConfirmed("Confirm Clear", String.format(MESSAGE_CONFIRMATION));
     }
 }
