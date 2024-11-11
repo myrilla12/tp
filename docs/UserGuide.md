@@ -8,6 +8,8 @@
 
 Medicontact is a desktop app to help **small GP Clinics in Singapore for manage patient contacts**. It is centered around typed commands and meant for healthcare administrative staff. If you can type fast, MediContact can get your contact management tasks done faster than traditional apps.
 
+This app is designed for GP clinics in Singapore, where all patients should have a valid Singapore phone number.
+
 <!-- * Table of Contents -->
 <page-nav-print />
 
@@ -17,23 +19,26 @@ Medicontact is a desktop app to help **small GP Clinics in Singapore for manage 
 
 1. Ensure you have Java `17` or above installed in your Computer. Instructions for Java `17` are available [here](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html).
 
-1. Download the `MediContact.jar` file from [here](https://github.com/AY2425S1-CS2103T-T10-1/tp/releases/tag/v1.5). Scroll all the way down to see **Assets** and click on `MediContact.jar` to install. 
+2. Download the `MediContact.jar` file from [here](https://github.com/AY2425S1-CS2103T-T10-1/tp/releases/tag/v1.5). Scroll all the way down to see **Assets** and click on `MediContact.jar` to install. 
 
-1. Copy the file to the folder you want to use as the _home folder_ for MediContact. We recommend naming this folder `MediContact`. Place `MediContact.jar` in this folder.<br>
+3. Copy the file to the folder you want to use as the _home folder_ for MediContact. 
 
    <img src="images/quickStart.png" width="800" style="border: 2px solid lightgrey; border-radius: 10px;"><br>
 
-1. Open a command terminal (called `Terminal` on MacOS and `Command Prompt` on Windows). Change directory into the folder you put the jar file in using the command `cd`. Here are detailed instructions for how to change directory in [MacOS](https://youtu.be/VRFcEMPES7U) and in [Windows](https://www.youtube.com/watch?v=BfXh11ryBJg).
-
-1. Once you're in the same directory as `MediContact.jar`, use the command `java -jar MediContact.jar` to run the application. You're terminal should look something like this right before you enter the last command. The redacted portion should show your current directory.<br>
+4. Open a command terminal (`Terminal` on MacOS, `Command Prompt` on Windows). 
+5. Change directory into the folder you put the jar file in using the command `cd`. Here are detailed instructions for how to change directory in [MacOS](https://youtu.be/VRFcEMPES7U) and in [Windows](https://www.youtube.com/watch?v=BfXh11ryBJg).
+      
+6. Once you're in the same directory as `MediContact.jar`, run the application with `java -jar MediContact.jar`.
+Your terminal should look something like this right before entering the last command. The redacted portion should show your current directory.
 
    <img src="images/quickStart1.png" width="800" style="border: 2px solid lightgrey; border-radius: 10px;"><br>
 
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
-   <img src="images/ui.png" width="800" style="border: 2px solid lightgrey; border-radius: 10px;"><br>
 
-1. Type commands in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+<img src="images/Ui.png" width="800" style="border: 2px solid lightgrey; border-radius: 10px;"><br>
+
+7. Type commands in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
 * `list` : Lists all contacts.
@@ -56,10 +61,10 @@ Medicontact is a desktop app to help **small GP Clinics in Singapore for manage 
 
 **Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the <u>parameters</u> to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
-* Items in square brackets are optional.<br>
+* Items in square brackets are <u>optional</u>.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
@@ -71,10 +76,10 @@ Medicontact is a desktop app to help **small GP Clinics in Singapore for manage 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* Command keywords are case insensitive
+* Command keywords are <u>case **in**sensitive</u>.
   e.g. the command `add n/John Doe`, is equal to `Add n/John Doe`.
 
-* Parameter `NAME` is case insensitive
+* Parameter `NAME` is <u>case insensitive</u>.
   e.g. the command `delete John Doe`, is equal to `delete john doe` or `delete JOHn DoE`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
@@ -96,7 +101,7 @@ Adds a patient contact to the address book.
 
 - `PHONE_NUMBER` must only contain characters 0-9 and must be exactly 8 digits long.
 - `EMAIL` should be in the format **local-part@domain** whereby the local-part contains only alphanumeric characters and some special characters like +_.- but may not start with the special characters. The domain name must end with a domain label at least 2 characters long and start and end with alphanumeric characters. The domain label should consist of alphanumeric characters separated only be hyphens, if any.
-- `ADDRESS` must not contain any of the prefixes (e.g. `\n`, `\ap`) and must not begin with a space.
+- `ADDRESS` must not contain any of the prefixes (e.g. `n/`, `ap/`) and must not begin with a space.
 - `AGE` must only contain characters 0-9 and must be 1-3 digits long.
 - `SEX` must only contain alphanumeric characters.
 - `FUTURE APPOINTMENT` should be in the format **dd/MM/yyyy HHmm** and be after your current time.
@@ -107,19 +112,11 @@ Adds a patient contact to the address book.
 **Remarks**: 
 
 - Duplicate **names** are not permitted. MediContact cannot contain two `John Doe` or a `Betsy Crowe` and a `betsy crowe`
-
 - A patient can have any number of tags (including 0). Duplicate tags will be ignored (e.g. if added contact includes paramters `t/patient t/patient` the contact will only include 1 `patient` tag). 
-
 - A patient can have any number of future appointments (including 0).
-
 - A patient's sex is not limited to Male/Female/Other to provide you with more flexibility.
-
-- A patient aged 0 is allowed for accurate tracking of a newborns age. 
-
-- There is also a higher age limit of 999 to provide you with more flexibility.
-
+- Ages 0-999 are permitted to provide you with more flexibility (including accurate tracking of a newborns age). 
 - Duplicate phone numbers are allowed for cases like parents and children sharing a same number.
-
 - Fields in square brackets (e.g. `[ap/FUTURE APPOINTMENT]`) are optional.
 </box>
 <box type="warning" icon=":fa-solid-book:" no-background light>
@@ -309,7 +306,7 @@ Filter patients whose age and/or appointment dates are within the specified rang
   e.g. `filter t/medication t/Dr Tan`
 * Each value for each field has to be a range (i.e. lower bound - upper bound)
 * At least one field (age or appointment dates or tags) has to be specified.
-* Range are inclusive (i.e. age 79 is considered True in specified range'79-99')
+* Range are inclusive (i.e. age 79 is considered True in specified range '79-99')
 * Patients must be within all specified ranges to be returned if both age and appointment dates are specified (i.e. `AND` search).
   e.g. `filter b/70-99 ap/01/01/2025 - 01/01/2026` will return `Roy b/87 ap/11/11/2025`.
 
@@ -735,7 +732,7 @@ Unstars the specified patient contact from the address book removing them from f
 <img src="images/unstarCommand_output.png" width="800" style="border: 2px solid lightgrey; border-radius: 10px;">
 </box>
 
-[Return to Table of Contents](#medicontact)
+[<i class="fa-solid fa-angle-up"></i>](#medicontact)
 <br>
 <br>
 
@@ -816,7 +813,23 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 ## <i class="fa-solid fa-question"></i> FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous MediContact home folder.
+
+**Q**: What should I do if I input an invalid command?<br>
+**A**: Check out [Features](#features) or simply run `help` to see the full list of commands, and try entering a valid command again.
+
+**Q**: Where should I start if I am a novice to CLI?<br>
+**A**: Run `help` to check the format. For more information on each command's usage, check out the [Features](#features) section.
+
+**Q**: Can I have duplicate contacts in my address book? <br>
+**A**: Duplicate names are not permitted. Contacts with the same name, even if capitalized differently, are considered duplicates.
+
+**Q**: Can I mark certain patients as 'important' or add them into favourite list?<br>
+**A**: Yes, you can use the `edit` command with tag prefix `t/` to tag patients as high-priority, or use `star` command to add them to a favourite list.
+
+**Q**: Is there a way to restore deleted or cleared contacts?<br>
+**A**: No, `delete` and `clear` actions are irreversible.
+
 
 [Return to Table of Contents](#medicontact)
 
@@ -833,23 +846,25 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 ## <i class="fas fa-file-alt"></i> Command summary
 
+
 | Action     | Format, Examples                                             |
 | ---------- | ------------------------------------------------------------ |
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/AGE s/SEX [ap/APPOINTMENTS]… [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 b/24 s/Male ap/01/01/2025 1200 t/friend t/colleague` |
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/AGE s/SEX [ap/FUTURE APPOINTMENT]… [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 b/24 s/Male ap/01/01/2025 1200 t/friend t/colleague` |
 | **Clear**  | `clear`                                                      |
 | **Delete** | `delete INDEX` or `delete NAME` <br> e.g., `delete 3`, `delete Alex Yeoh` |
-| **Edit**   | `edit NAME [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/AGE] [s/SEX] [ap/APPOINTMENT] [t/TAG]…`<br> e.g.,`edit John Doe n/James Lee e/jameslee@example.com` |
+| **Edit**   | `edit NAME [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/AGE] [s/SEX] [ap/FUTURE APPOINTMENT] [t/TAG]…`<br> e.g.,`edit John Doe n/James Lee e/jameslee@example.com` |
 | **Exit**   | `exit`                                                       |
 | **Filter** | `filter [ap/APPOINTMENT_DATE_LOWER_BOUND - APPOINTMENT_DATE_UPPER_BOUND] [b/AGE_LOWER_BOUND - AGE_UPPER_BOUND] [t/TAG]...`<br> e.g.,`filter b/70-79 t/medication t/Dr Tan` |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James 89127777` |
 | **Help**   | `help`                                                       |
 | **Import** | `import FILENAME.json`<br>e.g. `import patientRecords.json`  |
 | **List**   | `list` <br/>`list *` (to list starred contacts)              |
-| **Note**   | `note NAME [ap/APPOINTMENT] [m/MEDICATION] [r/REMARK]…`<br> e.g.,`note John Doe r/Allergic to XXX m/10mg Ibuprofen` |
+| **Note**   | `note NAME [ap/PREVIOUS APPOINTMENT] [m/MEDICATION] [r/REMARK]…`<br> e.g.,`note John Doe r/Allergic to XXX m/10mg Ibuprofen` |
 | **Sort**   | `sort` (to sort contacts based on appointment dates)         |
 | **Star**   | `star INDEX` or `star NAME` <br/> e.g., `star 3`, `star Alex Yeoh` |
 | **Unstar** | `unstar INDEX` or `unstar NAME` <br/> e.g., `unstar 3`, `unstar Alex Yeoh` |
 | **View**   | `view INDEX` or `view NAME` <br/> e.g., `view 3`, `view Alex Yeoh` |
+
 
 [Return to Table of Contents](#medicontact)
 
@@ -857,21 +872,21 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 ## <i class="fas fa-file-alt"></i> Summary of parameter constraints
 
-| Parameter              | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| ---------------------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Address**            | Should not be blank. Should not begin with a whitespace. Should not contain any prefixes.<br>Valid example: `2042 Balotony street #05-03`                                                                                                                                                                                                                                                                                                             |
-| **Age**                | Should only contain numbers. Should be 1-3 digits long.<br>Valid example: `103`                                                                                                                                                                                                                                                                                                                                                                       |
-| **Appointment**        | Should be in the form dd/mm/yyyy hhmm. Should be dates in the future.<br>Valid example: `12/02/2040 1600`                                                                                                                                                                                                                                                                                                                                             |
-| **Email**              | Should be in the form local-part@domain. Local-part should only contain alphanumeric characters or these special characters `+_.-`. Domain should be made up of doman labels separated by periods. Domain name should end with a domain label at least 2 characters long. Domain label should start and end with alphanumeric characters. Domain label should consist of alphanumeric characters or hyphens.<br>Valid example: `alexyeoh24@gmail.com` |
-| **Filename**           | Should match the filename of desired import file exactly. Should end in `.json`.<br>Valid example: `PatientRecords.json`                                                                                                                                                                                                                                                                                                                              |
-| **Index**              | Should be a positive integer. Should match to an index displayed in the contacts list.<br>Valid example: `1` (if there is at least one contact in the contacts list)                                                                                                                                                                                                                                                                                  |
-| **Keyword**            | Should be alphanumeric (since only name and phone number is searched).<br>Valid example: `alex yeoh`                                                                                                                                                                                                                                                                                                                                                  |
-| **Name**               | Should be alphanumeric. Should not be blank.<br>Valid example: `Alex Yeoh`                                                                                                                                                                                                                                                                                                                                                                            |
-| **Note (Appointment)** | Should be in the form dd/mm/yyyy hhmm. Should be dates in the past.<br/>Valid example: `12/02/2023 1600`                                                                                                                                                                                                                                                                                                                                              |
-| **Note (Medication)**  | Should be alphanumeric.<br>Valid example: `Ibuprofen`                                                                                                                                                                                                                                                                                                                                                                                                 |
-| **Note (Remark)**      | Should be alphanumeric.<br>Valid example: `Recurring appointment on Tuesdays`                                                                                                                                                                                                                                                                                                                                                                         |
-| **Phone number**       | Should only contain numbers. Should be exactly 8 digits long.<br>Valid example: `12345678`                                                                                                                                                                                                                                                                                                                                                            |
-| **Sex**                | Should be alphanumeric. Should not be blank.<br>Valid example: `Female`                                                                                                                                                                                                                                                                                                                                                                               |
-| **Tags**               | Should be alphanumeric.<br>Valid example: `Patient`                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Parameter                           | Prefix | Constraints                                                  |
+| ----------------------------------- | ------ | ------------------------------------------------------------ |
+| **Address**                         | `a/`   | Should not be blank. Should not begin with a whitespace. Should not contain any prefixes.<br>Valid example: `2042 Balotony street #05-03` |
+| **Age**                             | `b/`   | Should only contain numbers. Should be 1-3 digits long.<br>Valid example: `103` |
+| **Email**                           | `e/`   | Should be in the form local-part@domain. Local-part should only contain alphanumeric characters or these special characters `+_.-`. Domain should be made up of doman labels separated by periods. Domain name should end with a domain label at least 2 characters long. Domain label should start and end with alphanumeric characters. Domain label should consist of alphanumeric characters or hyphens.<br>Valid example: `alexyeoh24@gmail.com` |
+| **Filename**                        | -      | Should match the filename of desired import file exactly. Should end in `.json`. No prefix.<br>Valid example: `PatientRecords.json` |
+| **Future Appointment**              | `ap/`  | Should be in the form dd/mm/yyyy hhmm. Should be valid dates in the future.<br/>Valid example: `12/02/2040 1600` |
+| **Index**                           | -      | Should be a positive integer. Should match to an index displayed in the contacts list. No prefix.<br>Valid example: `1` (if there is at least one contact in the contacts list) |
+| **Keyword**                         | -      | Should be alphanumeric (since only name and phone number is searched). No prefix.<br>Valid example: `alex yeoh` |
+| **Name**                            | `n/`   | Should be alphanumeric. Should not be blank. Prefix not necessary for some commands.<br>Valid example: `Alex Yeoh` |
+| **Note <br>(Previous Appointment)** | `ap/`  | Should be in the form dd/mm/yyyy hhmm. Should be valid dates in the past.<br/>Valid example: `12/02/2023 1600` |
+| **Note (Medication)**               | `m/`   | Should be alphanumeric.<br>Valid example: `Ibuprofen`        |
+| **Note (Remark)**                   | `r/`   | Should be alphanumeric.<br>Valid example: `Recurring appointment on Tuesdays` |
+| **Phone number**                    | `p/`   | Should only contain numbers. Should be exactly 8 digits long (target audience is in Singapore). <br>Valid example: `12345678` |
+| **Sex**                             | `s/`   | Should be alphanumeric. Should not be blank.<br>Valid example: `Female` |
+| **Tags**                            | `t/`   | Should be alphanumeric.<br>Valid example: `Patient`          |
 
 [Return to Table of Contents](#medicontact)
